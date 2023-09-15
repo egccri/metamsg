@@ -9,10 +9,12 @@ edition = "2021"
 members = [
     "crates/connection",
     "crates/discovery",
+    "crates/network_device_link",
     "crates/authmanager",
     "crates/transmission",
     "crates/adapter",
     "crates/metamsg-mqtt",
 ]
 
-[dependencies]
+[workspace.dependencies]
+thiserror = "1.0.48"

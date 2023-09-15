@@ -1,4 +1,4 @@
-pub mod manager;
 pub mod ble;
-pub mod tcp;
+pub mod manager;
 pub mod p2p;
+pub mod tcp;

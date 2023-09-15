@@ -1,10 +1,12 @@
-use crate::manager::conn_manager::ListenerCallback;
+use crate::manager::common_listener::ListenerCallback;
+use std::net::IpAddr;
 
-pub struct TcpServer {
-
+pub struct TcpListenerOptions {
+    ip_addr: IpAddr,
+    port: u16,
 }
 
-pub struct TcpConnectionInfo {}
+pub struct TcpServer {}
 
 pub struct TcpListenerCallback {}
 

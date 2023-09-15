@@ -1,10 +1,6 @@
-use crate::manager::conn_manager::ListenerCallback;
+use crate::manager::common_listener::ListenerCallback;
 
-pub struct BleServer {
-
-}
-
-pub struct BleConnectionInfo {}
+pub struct BleServer {}
 
 pub struct BleListenerCallback {}
 

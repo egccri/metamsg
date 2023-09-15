@@ -1,10 +1,6 @@
-use crate::manager::conn_manager::ListenerCallback;
+use crate::manager::common_listener::ListenerCallback;
 
-pub struct P2PServer {
-
-}
-
-pub struct P2PConnectionInfo {}
+pub struct P2PServer {}
 
 pub struct P2PListenerCallback {}
 
