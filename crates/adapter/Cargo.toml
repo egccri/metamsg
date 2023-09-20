@@ -6,4 +6,5 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-tower = "0.4.13"
+connection = { path = "../connection" }
+tower = { version = "0.4.13", features = ["buffer"] }
