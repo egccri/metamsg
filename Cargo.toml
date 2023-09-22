@@ -1,6 +1,6 @@
 [package]
 name = "metamsg"
-version = "0.0.0"
+version = "0.1.0"
 description = "Low level network with custom layer that build custom protocol."
 documentation = "https://docs.rs/metamsg"
 license = "Apache-2.0"
@@ -11,11 +11,16 @@ edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[dependencies]
+transmission = { path = "crates/transmission", version = "0.1.0" }
+discovery = { path = "crates/discovery", version = "0.1.0" }
+network-device-link = { path = "crates/network-device-link", version = "0.1.0" }
+
 [workspace]
 members = [
     "crates/connection",
     "crates/discovery",
-    "crates/network_device_link",
+    "crates/network-device-link",
     "crates/authmanager",
     "crates/transmission",
     "crates/adapter",
@@ -23,4 +28,8 @@ members = [
 ]
 
 [workspace.dependencies]
+tokio = "1.32.0"
+btleplug = "0.11.1"
+libp2p = "0.52.3"
 thiserror = "1.0.48"
+tracing = "0.1.37"
