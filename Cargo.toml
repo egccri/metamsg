@@ -14,13 +14,13 @@ edition = "2021"
 [dependencies]
 transmission = { path = "crates/transmission", version = "0.1.0" }
 discovery = { path = "crates/discovery", version = "0.1.0" }
-network-device-link = { path = "crates/network-device-link", version = "0.1.0" }
+routing-link = { path = "crates/routing-link", version = "0.1.0" }
 
 [workspace]
 members = [
     "crates/connection",
     "crates/discovery",
-    "crates/network-device-link",
+    "crates/routing-link",
     "crates/authmanager",
     "crates/transmission",
     "crates/adapter",

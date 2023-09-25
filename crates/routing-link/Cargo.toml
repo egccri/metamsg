@@ -1,5 +1,5 @@
 [package]
-name = "network-device-link"
+name = "routing-link"
 version = "0.1.0"
 edition = "2021"
 
