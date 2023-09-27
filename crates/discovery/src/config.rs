@@ -1,9 +1,9 @@
-use crate::multicast::DiscoveryMulticastConfig;
-use crate::r#static::DiscoveryStaticConfig;
+use crate::coap::CoapDiscoveryConfig;
+use crate::manual::ManualDiscoveryConfig;
 
 pub struct DiscoveryConfig {
     timeout: Option<u64>,
     delay: Option<u64>,
-    pub r#static: DiscoveryStaticConfig,
-    pub multicast: DiscoveryMulticastConfig,
+    pub manual: Option<ManualDiscoveryConfig>,
+    pub coap: Option<CoapDiscoveryConfig>,
 }

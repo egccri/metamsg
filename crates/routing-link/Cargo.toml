@@ -7,3 +7,4 @@ edition = "2021"
 
 [dependencies]
 connection = { path = "../connection", version = "0.1.0" }
+thiserror = { workspace = true }
