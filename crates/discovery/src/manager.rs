@@ -11,6 +11,7 @@ pub(crate) use discovery_manager::Discovery;
 
 use crate::config::DiscoveryConfig;
 use crate::manual::{ManualDiscoveryCallback, ManualDiscoveryServer};
+use crate::DiscoveryError;
 pub use discovery_manager::{publish_service, start_discovery, stop_discovery, un_publish_service};
 
 pub enum DiscoveryServer {
@@ -25,17 +26,30 @@ pub struct DiscoveryServers {
 }
 
 impl DiscoveryServers {
-    pub fn init(config: DiscoveryConfig, device_manager: Arc<DeviceManager>) -> DiscoveryServers {
+    pub fn init(
+        config: DiscoveryConfig,
+        device_manager: Arc<DeviceManager>,
+    ) -> Result<DiscoveryServers, DiscoveryError> {
         let mut servers = Vec::new();
-        let coap_server = CoapDiscoveryServer::new();
-        servers.push(DiscoveryServer::Coap(coap_server));
-        DiscoveryServers {
+
+        match config.coap.clone() {
+            None => {
+                tracing::warn!("Coap discovery server is not config, so server will not start.")
+            }
+            Some(config) => {
+                let coap_server = CoapDiscoveryServer::new(config);
+                servers.push(DiscoveryServer::Coap(coap_server));
+            }
+        }
+
+        Ok(DiscoveryServers {
             inner: servers,
             config,
             device_manager,
-        }
+        })
     }
 
+    /// Hot reload
     pub fn re_init(&self) -> DiscoveryServers {
         todo!()
     }

@@ -11,6 +11,12 @@ pub mod manager;
 mod manual;
 mod multicast;
 
+#[derive(Debug, thiserror::Error)]
+pub enum DiscoveryError {
+    #[error("{} server is not config.")]
+    ConfigurationNotEnableError(String),
+}
+
 pub fn main_loop() {
     loop {
         tokio::task::spawn(async {});

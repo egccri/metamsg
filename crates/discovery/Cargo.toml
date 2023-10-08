@@ -10,3 +10,5 @@ routing-link = { path = "../routing-link", version = "0.1.0" }
 tokio = { workspace = true, features = ["full"] }
 coap = "0.12"
 coap-lite = "0.11.3"
+thiserror = { workspace = true }
+tracing = { workspace = true }

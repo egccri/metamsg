@@ -2,21 +2,27 @@ pub mod coap_callback;
 
 use crate::coap::coap_callback::CoapDiscoveryCallback;
 use crate::manager::{Discovery, DiscoveryCallback};
+use coap::Server;
 
-pub struct CoapDiscoveryConfig {}
+#[derive(Debug, Clone)]
+pub struct CoapDiscoveryConfig {
+    pub addr: String,
+}
 
 #[derive(Debug)]
-pub struct CoapDiscoveryServer {}
+pub struct CoapDiscoveryServer {
+    config: CoapDiscoveryConfig,
+}
 
 impl CoapDiscoveryServer {
-    pub fn new() -> CoapDiscoveryServer {
-        CoapDiscoveryServer {}
+    pub fn new(config: CoapDiscoveryConfig) -> CoapDiscoveryServer {
+        CoapDiscoveryServer { config }
     }
 }
 
 impl Discovery<CoapDiscoveryCallback> for CoapDiscoveryServer {
     fn start_scan(&self) {
-        todo!()
+        let mut server = Server::new(self.config.addr.clone()).unwrap();
     }
 
     fn stop_scan(&self) {

@@ -2,6 +2,7 @@
 use crate::manager::{Discovery, DiscoveryCallback};
 use routing_link::device::DeviceInfo;
 
+#[derive(Debug, Clone)]
 pub struct ManualDiscoveryConfig {}
 
 pub struct ManualDiscoveryServer {}
