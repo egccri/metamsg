@@ -1,7 +1,5 @@
 ///
-pub struct NetworkLink {
-
-}
+pub struct NetworkLink {}
 
 /// Store framed message
 pub struct Table {}

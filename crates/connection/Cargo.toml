@@ -6,8 +6,11 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-tokio = { workspace = true, features = ["net"] }
+tokio = { workspace = true, features = ["net", "macros"] }
+bytes = "1.5.0"
 btleplug = { workspace = true, features = ["serde"] }
 libp2p = { workspace = true }
 thiserror = { workspace = true }
 tracing = { workspace = true }
+async-trait = { workspace = true }
+chrono = "0.4.22"

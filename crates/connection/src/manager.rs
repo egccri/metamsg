@@ -2,6 +2,8 @@ pub mod common_interface;
 pub mod common_listener;
 pub mod connection_manager;
 
+pub use common_interface::ListenerService;
+
 /// The union `int32` in `network_link`.
 pub type ConnectionId = i32;
 

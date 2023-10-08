@@ -2,6 +2,8 @@ use crate::ble::BleConnectionInfo;
 use crate::p2p::P2PConnectionInfo;
 use crate::tcp::TcpConnectionInfo;
 
+// can't store real connection
+// config connection byte buffer size
 pub struct ConnectionStore {
     connections: Vec<Connection>,
 }
