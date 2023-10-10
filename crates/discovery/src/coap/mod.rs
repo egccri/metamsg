@@ -1,8 +1,13 @@
 pub mod coap_callback;
+mod coap_discovery;
+mod coap_client;
 
 use crate::coap::coap_callback::CoapDiscoveryCallback;
 use crate::manager::{Discovery, DiscoveryCallback};
 use coap::Server;
+
+pub const COAP_DEFAULT_SERVER_ADDR: &str = "0.0.0.0";
+pub const COAP_DEFAULT_SERVER_PORT: &str = "5684";
 
 #[derive(Debug, Clone)]
 pub struct CoapDiscoveryConfig {
