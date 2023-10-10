@@ -9,7 +9,7 @@ mod coap;
 pub mod config;
 pub mod manager;
 mod manual;
-mod multicast;
+pub mod multicast;
 
 #[derive(Debug, thiserror::Error)]
 pub enum DiscoveryError {
