@@ -1,6 +1,6 @@
 pub mod coap_callback;
-mod coap_discovery;
 mod coap_client;
+mod coap_discovery;
 
 use crate::coap::coap_callback::CoapDiscoveryCallback;
 use crate::manager::{Discovery, DiscoveryCallback};
@@ -27,7 +27,7 @@ impl CoapDiscoveryServer {
 
 impl Discovery<CoapDiscoveryCallback> for CoapDiscoveryServer {
     fn start_scan(&self) {
-        let mut server = Server::new(self.config.addr.clone()).unwrap();
+        // let mut server = Server::new(self.config.addr.clone()).unwrap();
     }
 
     fn stop_scan(&self) {

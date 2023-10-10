@@ -13,7 +13,7 @@ mod multicast;
 
 #[derive(Debug, thiserror::Error)]
 pub enum DiscoveryError {
-    #[error("{} server is not config.")]
+    #[error("{0} server is not config.")]
     ConfigurationNotEnableError(String),
 }
 
