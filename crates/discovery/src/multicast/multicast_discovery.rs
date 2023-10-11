@@ -19,7 +19,7 @@ impl MulticastContext {
     }
 }
 
-fn new_socket(addr: &SocketAddr) -> io::Result<Socket> {
+pub fn new_socket(addr: &SocketAddr) -> io::Result<Socket> {
     let domain = if addr.is_ipv4() {
         Domain::IPV4
     } else {
@@ -65,29 +65,4 @@ fn bind_multicast(socket: &Socket, addr: &SocketAddr) -> io::Result<()> {
 #[cfg(unix)]
 fn bind_multicast(socket: &Socket, addr: &SocketAddr) -> io::Result<()> {
     socket.bind(&socket2::SockAddr::from(*addr))
-}
-
-pub fn new_sender(addr: &SocketAddr) -> io::Result<UdpSocket> {
-    let socket = new_socket(addr)?;
-
-    if addr.is_ipv4() {
-        socket.set_multicast_if_v4(&Ipv4Addr::new(0, 0, 0, 0))?;
-
-        socket.bind(&SockAddr::from(SocketAddr::new(
-            Ipv4Addr::new(0, 0, 0, 0).into(),
-            0,
-        )))?;
-    } else {
-        // *WARNING* THIS IS SPECIFIC TO THE AUTHORS COMPUTER
-        //   find the index of your IPv6 interface you'd like to test with.
-        socket.set_multicast_if_v6(5)?;
-
-        socket.bind(&SockAddr::from(SocketAddr::new(
-            Ipv6Addr::new(0, 0, 0, 0, 0, 0, 0, 0).into(),
-            0,
-        )))?;
-    }
-
-    // convert to standard sockets...
-    Ok(socket.into())
 }

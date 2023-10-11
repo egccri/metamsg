@@ -1,6 +1,8 @@
+mod multicast_client;
 mod multicast_discovery;
 
-pub use multicast_discovery::new_sender;
+pub use multicast_client::new_sender;
+pub use multicast_discovery::new_socket;
 
 use once_cell::sync::Lazy;
 use std::net::{IpAddr, Ipv4Addr, Ipv6Addr, SocketAddr};
@@ -54,11 +56,11 @@ pub mod test {
         let context = MulticastContext::init_with_config(config);
         let listener = context.start_listener()?;
         loop {
-            let mut buffer = Vec::with_capacity(4096);
+            let mut buf = [MaybeUninit::uninit(); 1024];
 
-            match listener.recv_from(buffer.spare_capacity_mut()) {
+            match listener.recv_from(&mut buf) {
                 Ok((len, remote)) => {
-                    println!("{}-{:?}: {:?}", len, remote, buffer);
+                    println!("{}-{:?}: {:?}", len, remote, &buf);
                 }
                 Err(err) => {
                     eprintln!("{}", err);
