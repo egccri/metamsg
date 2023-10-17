@@ -1,4 +1,4 @@
-///
+/// Support flight windows
 pub struct NetworkLink {}
 
 /// Store framed message
