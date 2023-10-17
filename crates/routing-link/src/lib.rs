@@ -6,6 +6,6 @@
 //! * client to router `Slave` devices and One `Main` device
 //!
 //! `network-device-link` use `device-id`, then fetch connection in `Connection`.
-mod device;
+pub mod device;
 mod link;
 mod routing;
