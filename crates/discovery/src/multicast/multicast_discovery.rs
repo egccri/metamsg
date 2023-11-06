@@ -1,7 +1,7 @@
-use crate::multicast::{MulticastContext, MulticastDiscoveryConfig, IPV4, IPV6, PORT};
-use socket2::{Domain, Protocol, SockAddr, Socket, Type};
+use crate::multicast::{MulticastContext, MulticastDiscoveryConfig, IPV4, PORT};
+use socket2::{Domain, Protocol, Socket, Type};
 use std::io;
-use std::net::{IpAddr, Ipv4Addr, Ipv6Addr, SocketAddr, UdpSocket};
+use std::net::{IpAddr, Ipv4Addr, SocketAddr};
 use std::time::Duration;
 
 impl MulticastContext {

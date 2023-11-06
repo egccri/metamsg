@@ -1,2 +1,2 @@
 mod pubsub;
-mod rpc;
+mod reqresp;

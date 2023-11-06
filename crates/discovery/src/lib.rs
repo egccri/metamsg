@@ -7,8 +7,11 @@
 mod ble;
 mod coap;
 pub mod config;
+mod gossip;
+mod handshake;
 pub mod manager;
 mod manual;
+mod mdns;
 pub mod multicast;
 
 #[derive(Debug, thiserror::Error)]
