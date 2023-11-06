@@ -1,3 +1,4 @@
+use crate::reqresp::protocol::request::Request;
 use crate::rpc::protocol::request::Request;
 use std::collections::HashMap;
 

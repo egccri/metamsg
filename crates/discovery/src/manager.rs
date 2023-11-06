@@ -1,35 +1,31 @@
-mod discovery_listener;
+mod discovery_callback;
 mod discovery_manager;
 
 use crate::coap::coap_callback::CoapDiscoveryCallback;
 use crate::coap::CoapDiscoveryServer;
-use routing_link::device::DeviceManager;
+use routing::device::DeviceManager;
 use std::sync::Arc;
 
-pub(crate) use discovery_listener::DiscoveryCallback;
+pub(crate) use discovery_callback::DiscoveryCallback;
 pub(crate) use discovery_manager::Discovery;
 
 use crate::config::DiscoveryConfig;
-use crate::manual::{ManualDiscoveryCallback, ManualDiscoveryServer};
+use crate::manager::discovery_manager::DiscoveryServer;
+use crate::manual::ManualDiscoveryCallback;
 use crate::DiscoveryError;
 pub use discovery_manager::{publish_service, start_discovery, stop_discovery, un_publish_service};
 
-pub enum DiscoveryServer {
-    Manual(ManualDiscoveryServer),
-    Coap(CoapDiscoveryServer),
-}
-
-pub struct DiscoveryServers {
+pub struct DiscoveryManager {
     inner: Vec<DiscoveryServer>,
     config: DiscoveryConfig,
     device_manager: Arc<DeviceManager>,
 }
 
-impl DiscoveryServers {
+impl DiscoveryManager {
     pub fn init(
         config: DiscoveryConfig,
         device_manager: Arc<DeviceManager>,
-    ) -> Result<DiscoveryServers, DiscoveryError> {
+    ) -> Result<DiscoveryManager, DiscoveryError> {
         let mut servers = Vec::new();
 
         match config.coap.clone() {
@@ -42,7 +38,7 @@ impl DiscoveryServers {
             }
         }
 
-        Ok(DiscoveryServers {
+        Ok(DiscoveryManager {
             inner: servers,
             config,
             device_manager,
@@ -50,7 +46,7 @@ impl DiscoveryServers {
     }
 
     /// Hot reload
-    pub fn re_init(&self) -> DiscoveryServers {
+    pub fn re_init(&self) -> DiscoveryManager {
         todo!()
     }
 }
@@ -63,5 +59,6 @@ pub fn start_scan(discovery: DiscoveryServer, device_manager: Arc<DeviceManager>
         DiscoveryServer::Coap(coap_server) => {
             coap_server._start_scan(CoapDiscoveryCallback::new(), device_manager.clone());
         }
+        DiscoveryServer::Multicast() => {}
     }
 }

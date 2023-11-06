@@ -12,23 +12,27 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+connection = { path = "crates/connection", version = "0.1.0" }
 transmission = { path = "crates/transmission", version = "0.1.0" }
 discovery = { path = "crates/discovery", version = "0.1.0" }
-routing-link = { path = "crates/routing-link", version = "0.1.0" }
+routing = { path = "crates/routing", version = "0.1.0" }
+tokio = { workspace = true, features = ["signal"] }
+bytes = { workspace = true }
 
 [workspace]
 members = [
     "crates/connection",
+    "crates/channel",
+    "crates/routing",
     "crates/discovery",
-    "crates/routing-link",
-    "crates/authmanager",
     "crates/transmission",
+    "crates/authmanager",
     "crates/adapter",
-    "crates/metamsg-mqtt",
 ]
 
 [workspace.dependencies]
 tokio = "1.32.0"
+bytes = "1.5.0"
 btleplug = "0.11.1"
 libp2p = "0.52.3"
 thiserror = "1.0.48"

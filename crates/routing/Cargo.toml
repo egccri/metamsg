@@ -1,5 +1,5 @@
 [package]
-name = "routing-link"
+name = "routing"
 version = "0.1.0"
 edition = "2021"
 
@@ -8,3 +8,4 @@ edition = "2021"
 [dependencies]
 connection = { path = "../connection", version = "0.1.0" }
 thiserror = { workspace = true }
+petgraph = "0.6.4"

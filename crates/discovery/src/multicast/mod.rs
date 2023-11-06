@@ -1,3 +1,8 @@
+//! Discovery multicast submodule, there's a client and a server api. Client is a receiver,
+//! usually start on the rich resource device, listen a special address when call `start_scan`.
+//! Server is a sender that start on the poll resource device, it periodically send hello messages
+//! to a multicast net group at intervals(100ms, 1000ms, 5000ms) util a client discovery it.
+mod multicast_callback;
 mod multicast_client;
 mod multicast_discovery;
 

@@ -9,6 +9,8 @@ pub enum ListenerModule {
     Direct,
 }
 
+pub enum ListenerOption {}
+
 pub enum ListenerCallbacks {
     Ble(BleListenerCallback),
     Tcp(TcpListenerCallback),
