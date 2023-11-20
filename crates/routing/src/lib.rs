@@ -16,12 +16,14 @@
 //! | device_3rd |
 //! |------------|
 //! ```
+//!
+//! Depend on routing, you can easily build a distributed network, you only need focus on protocol itself.
 pub mod device;
 mod link;
+mod message;
 mod net_ledger;
 mod node;
 mod routing;
-mod message;
 
 /// The main node that persists the routing graph is typically a router.
 pub enum NodeType {

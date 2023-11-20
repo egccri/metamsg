@@ -9,6 +9,8 @@ use connection::manager::common_interface::ListenerOptions;
 pub trait Engine {
     type Listener;
 
+    type Codec;
+
     fn start(option: ListenerOptions);
 
     fn shutdown();

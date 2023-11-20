@@ -1,4 +1,1 @@
-mod channel;
-mod client;
-mod connection_hook;
-mod message;
+//! `Adapter` is adapter to different async runtime, different OS and hardware.

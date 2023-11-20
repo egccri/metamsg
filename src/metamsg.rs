@@ -1,7 +1,7 @@
 use crate::session::Session;
 use crate::Protocol;
 use bytes::BytesMut;
-use routing_link::Linkable;
+use routing::Linkable;
 use std::sync::Arc;
 
 /// `Metamsg` is the api user use. `Metamsg` can cheap clone, and thread safe.

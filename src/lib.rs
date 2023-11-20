@@ -1,6 +1,5 @@
 #![feature(associated_type_defaults)]
 //! Metamsg
-mod codec;
 mod config;
 mod engine;
 mod metamsg;

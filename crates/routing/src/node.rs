@@ -4,5 +4,5 @@ use crate::device::DeviceInfo;
 pub struct NodeInfo {
     node_id: u64, // every router has a unique router id
     itself: DeviceInfo,
-    know_devices: Vec<DeviceInfo>
+    know_devices: Vec<DeviceInfo>,
 }

@@ -7,3 +7,5 @@ edition = "2021"
 
 [dependencies]
 connection = { path = "../connection",  version = "0.1.0" }
+tower = { version = "0.4.13", features = ["buffer"] }
+tokio-util = { version = "0.7.8", features = ["codec"] }
