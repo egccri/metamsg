@@ -4,4 +4,5 @@ mod channel;
 mod client;
 mod codec;
 mod message;
-mod table;
+
+pub use channel::{Channel, ChannelId};

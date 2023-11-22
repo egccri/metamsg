@@ -37,3 +37,5 @@ pub trait Linkable {}
 impl<T> Linkable for Box<T> {}
 
 impl Linkable for String {}
+
+impl Linkable for &str {}

@@ -1,25 +1,28 @@
-use crate::session::Session;
+use crate::context::MetamsgContext;
 use crate::Protocol;
-use bytes::BytesMut;
+use bytes::{Bytes, BytesMut};
 use routing::Linkable;
 use std::sync::Arc;
 
 /// `Metamsg` is the api user use. `Metamsg` can cheap clone, and thread safe.
 #[derive(Clone)]
 pub struct Metamsg {
-    sender: Option<Sender>,
-    receiver: Option<Receiver>,
     auto_link: bool,
-    linker: Arc<Vec<Box<dyn Linkable>>>,
-    session: Arc<Box<dyn Session>>,
+    linkers: Arc<Vec<Box<dyn Linkable>>>,
+    context: MetamsgContext,
+}
+
+impl Metamsg {
+    pub fn new() -> MetamsgBuilder {
+        MetamsgBuilder::new()
+    }
 }
 
 pub struct MetamsgBuilder {
     sender: Option<Sender>,
     receiver: Option<Receiver>,
     auto_link: bool,
-    linker: Arc<Vec<Box<dyn Linkable>>>,
-    session: Option<Arc<Box<dyn Session>>>,
+    linkers: Arc<Vec<Box<dyn Linkable>>>,
 }
 
 impl MetamsgBuilder {
@@ -28,8 +31,7 @@ impl MetamsgBuilder {
             sender: None,
             receiver: None,
             auto_link: false,
-            linker: Arc::new(vec![]),
-            session: None,
+            linkers: Arc::new(vec![]),
         }
     }
 
@@ -46,8 +48,16 @@ impl MetamsgBuilder {
     }
 
     pub fn linker(mut self, linker: Box<dyn Linkable>) -> Self {
-        self.linker.push(linker);
+        self.linkers.push(linker);
         self
+    }
+
+    pub fn build(self) -> Metamsg {
+        Metamsg {
+            auto_link: false,
+            linkers: Arc::new(vec![]),
+            context: MetamsgContext::new(),
+        }
     }
 }
 
@@ -56,15 +66,22 @@ pub struct Receiver {}
 
 pub struct Sender {}
 
-impl Metamsg {
-    pub fn send(byte: BytesMut) {}
 
-    pub fn recv(byte: BytesMut) {}
+pub trait Primitives: Send + Sync {
+    async fn send(&self, byte: BytesMut) {}
+
+    async fn recv(&self, byte: BytesMut) {}
+}
+
+impl Metamsg {
+    pub async fn send(&self, byte: BytesMut) {}
+
+    pub async fn recv(&self, byte: BytesMut) {}
 
     // todo connect 是否可以包含listen（accept）
-    pub fn connect(endpoint: Endpoint) {}
+    pub async fn connect(&self, endpoint: Endpoint) {}
 
-    pub fn listen(endpoint: Endpoint) {}
+    pub async fn listen(&self, endpoint: Endpoint) {}
 }
 
 /// Example: "tcp://127.0.0.1:9999"

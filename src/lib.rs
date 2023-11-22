@@ -1,9 +1,9 @@
 #![feature(associated_type_defaults)]
 //! Metamsg
 mod config;
+mod context;
 mod engine;
-mod metamsg;
-mod session;
+pub mod metamsg;
 
 pub use metamsg::{Metamsg, MetamsgBuilder};
 
@@ -12,7 +12,7 @@ pub enum Protocol {
     Sub,
 }
 
-pub enum Engine {
+pub enum EngineType {
     TCP,
     UDP,
     BLE,
