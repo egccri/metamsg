@@ -1,9 +1,6 @@
 use crate::engine::Engine;
 use crate::Protocol;
 use channel::ChannelId;
-use connection::manager::connection_manager::Connection;
-use connection::manager::ConnectionId;
-use routing::device::DeviceInfo;
 use std::collections::HashMap;
 
 // ProtocolBase provides the protocol-specific handling for sockets.
@@ -23,8 +20,8 @@ pub struct MetamsgContext {
     engines: Vec<Engine>,
 }
 
-impl<T> MetamsgContext<T> {
-    pub fn new() -> MetamsgContext<T> {
+impl MetamsgContext {
+    pub fn new() -> MetamsgContext {
         MetamsgContext {
             protocol: Protocol::Pub,
             engines: vec![],

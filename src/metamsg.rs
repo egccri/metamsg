@@ -1,5 +1,5 @@
 use crate::context::MetamsgContext;
-use crate::Protocol;
+use crate::{Protocol, Transport};
 use bytes::{Bytes, BytesMut};
 use routing::Linkable;
 use std::sync::Arc;
@@ -38,6 +38,8 @@ impl MetamsgBuilder {
     pub fn proto(mut self, protocol: Protocol) -> Self {
         self
     }
+
+    pub fn transport(mut self, transport: Transport) -> Self { self }
 
     /// Set linker, see `Linkable`, linker used to find device, if device has registry, user can
     /// send to the device by name.

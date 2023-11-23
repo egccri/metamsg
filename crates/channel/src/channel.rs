@@ -1,4 +1,4 @@
-use tokio_util::bytes::Bytes;
+use tokio_util::bytes::{Bytes, BytesMut};
 use connection::manager::connection_manager::Connection;
 
 mod adapter_conn;
@@ -50,4 +50,9 @@ impl Default for ChannelConfig {
     }
 }
 
-impl<T> Channel<T> {}
+impl Channel {
+
+    pub async fn send(&self, bytes: BytesMut) {}
+
+    pub async fn recv(&self, bytes: BytesMut) {}
+}

@@ -1,7 +1,6 @@
-use std::collections::HashMap;
-use channel::{Channel, ChannelId};
+use channel::ChannelId;
 
 pub struct Socket {
-    sub_channels: HashMap<ChannelId, Channel>
+    sub_channels: Vec<ChannelId>
 }
 

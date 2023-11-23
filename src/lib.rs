@@ -12,7 +12,7 @@ pub enum Protocol {
     Sub,
 }
 
-pub enum EngineType {
+pub enum Transport {
     TCP,
     UDP,
     BLE,
