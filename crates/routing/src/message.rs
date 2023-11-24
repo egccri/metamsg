@@ -2,6 +2,7 @@ use crate::NodeType;
 
 pub enum Message {
     OAM(OAM),
+    Transfer(TransferMessage),
 }
 
 /// The message that upgrade a remote node to router peers.
@@ -11,6 +12,12 @@ pub enum Message {
 pub struct OAM {
     node_id: u64, // remote router id
     node_type: NodeType,
+    region: u64,
+}
+
+pub struct TransferMessage {
+    header: RoutingMessageHeader,
+    payload: Vec<u8>,
 }
 
 // 透传数据时需要将数据属性放置于Header里，然后包装原始数据发送
