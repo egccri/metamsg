@@ -23,4 +23,5 @@ Metamsg 主要是为了支持 Egccri 的组网通行， Egccri 对于组网通�
 + 局域网自发现自组网，Client支持广播消息，Egccri接收Client广播消息，或者Client知道Egccri地址，写死直连
 + 支持便捷的自定义协议，主要涉及编解码与连接管理
 + 对外暴露连接管理、设备管理、自定义协议
++ Client支持有限协议，比如Client只能作为Sub端，而如果指定Router，则可选的开启Discovery，Routing等功能
 

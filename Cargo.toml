@@ -29,7 +29,12 @@ members = [
     "crates/transmission",
     "crates/authmanager",
     "crates/adapter",
+    "metamsg-mqtt"
 ]
+
+#exclude = [
+#    "metamsg-mqtt"
+#]
 
 [workspace.dependencies]
 channel = { path = "crates/channel", version = "0.1.0" }

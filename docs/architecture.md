@@ -3,7 +3,7 @@
 ```
           Socket(Api)
         
-     pub/sub   &&  req/resp
+   pub/sub && req/resp && mqtt
      
         Context, Engine
         
