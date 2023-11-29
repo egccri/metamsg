@@ -1,5 +1,5 @@
 use crate::context::MetamsgContext;
-use crate::{Protocol, Transport};
+use crate::{Mode, Protocol, Transport};
 use bytes::{Bytes, BytesMut};
 use routing::Linkable;
 use std::sync::Arc;
@@ -35,15 +35,20 @@ impl MetamsgBuilder {
         }
     }
 
+    pub fn mode(mut self, mode: Mode) -> Self {
+        self
+    }
+
     pub fn proto(mut self, protocol: Protocol) -> Self {
         self
     }
 
-    pub fn transport(mut self, transport: Transport) -> Self { self }
+    pub fn transport(mut self, transport: Vec<Transport>) -> Self { self }
+
+
 
     /// Set linker, see `Linkable`, linker used to find device, if device has registry, user can
     /// send to the device by name.
-
     pub fn enable_auto_link(mut self) -> Self {
         self.auto_link = true;
         self
@@ -73,6 +78,10 @@ pub trait Primitives: Send + Sync {
     async fn send(&self, byte: BytesMut) {}
 
     async fn recv(&self, byte: BytesMut) {}
+
+    async fn get(&self, byte: BytesMut) -> BytesMut {
+        BytesMut::new()
+    }
 }
 
 impl Metamsg {

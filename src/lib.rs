@@ -7,6 +7,11 @@ pub mod metamsg;
 
 pub use metamsg::{Metamsg, MetamsgBuilder};
 
+pub enum Mode {
+    Router,
+    Client,
+}
+
 pub enum Protocol {
     Pub,
     Sub,
