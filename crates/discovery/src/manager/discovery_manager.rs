@@ -1,7 +1,7 @@
 use crate::coap::CoapDiscoveryServer;
 use crate::manager::discovery_callback::DiscoveryCallback;
 use crate::manual::ManualDiscoveryServer;
-use routing_link::device::DeviceManager;
+use routing::device::DeviceManager;
 use std::sync::Arc;
 
 pub enum DiscoveryServer {

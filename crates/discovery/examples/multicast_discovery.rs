@@ -4,6 +4,8 @@ use discovery::multicast::{
 use std::io;
 use std::mem::MaybeUninit;
 use std::net::{SocketAddr, UdpSocket};
+use std::thread::sleep;
+use std::time::Duration;
 
 fn main() -> io::Result<()> {
     let handler = std::thread::spawn(|| start_multicast_server());
@@ -12,7 +14,7 @@ fn main() -> io::Result<()> {
     let message = b"Hello from client!";
     let addr = SocketAddr::new(*IPV4, PORT);
     let socket = new_sender(&addr).expect("Could not create sender!");
-    for _ in 1..5 {
+    for _ in 1..10 {
         let result = socket.send_to(message, &addr);
         match result {
             Ok(size) => {
@@ -22,6 +24,7 @@ fn main() -> io::Result<()> {
                 eprintln!("{}", err)
             }
         }
+        sleep(Duration::from_secs(1));
     }
 
     let _ = handler.join();
@@ -39,7 +42,16 @@ fn start_multicast_server() -> io::Result<()> {
 
         match listener.recv_from(&mut buf) {
             Ok((len, remote)) => {
-                println!("{}-{:?}: {:?}", len, &remote, buf);
+                let result: String = buf[..len].iter()
+                    .map(|&char_maybe_uninit| {
+                        // Use assume_init to convert MaybeUninit<char> to char
+                        let initialized_char: char =
+                            unsafe { char_maybe_uninit.assume_init() as char } ;
+                        initialized_char
+                    })
+                    .collect();
+
+                println!("recv message from {:?}, len:{}: {:?}", &remote.as_socket(), len, result);
 
                 let remote_addr = &remote.as_socket().unwrap();
 
@@ -57,10 +69,10 @@ fn start_multicast_server() -> io::Result<()> {
                 };
             }
             Err(err) => {
-                eprintln!("{}", err);
-                break;
+                // eprintln!("{}", err.kind());
+                continue;
             }
         }
+        sleep(Duration::from_millis(10));
     }
-    Ok(())
 }

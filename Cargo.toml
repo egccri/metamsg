@@ -45,3 +45,8 @@ libp2p = "0.52.3"
 thiserror = "1.0.48"
 tracing = "0.1.37"
 async-trait = "0.1.73"
+
+[features]
+tcp = []
+quic = []
+ble = []

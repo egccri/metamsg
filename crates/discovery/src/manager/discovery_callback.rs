@@ -1,4 +1,4 @@
-use routing_link::device::{DeviceInfo, DeviceManager};
+use routing::device::{DeviceInfo, DeviceManager};
 use std::sync::Arc;
 
 /// Discovery callback, update routing-link

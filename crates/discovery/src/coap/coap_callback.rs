@@ -1,5 +1,5 @@
 use crate::manager::DiscoveryCallback;
-use routing_link::device::DeviceInfo;
+use routing::device::DeviceInfo;
 
 pub struct CoapDiscoveryCallback {}
 

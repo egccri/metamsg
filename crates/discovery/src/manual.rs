@@ -1,6 +1,6 @@
 /// Use static addr to connect, include tcp, udp etc.
 use crate::manager::{Discovery, DiscoveryCallback};
-use routing_link::device::DeviceInfo;
+use routing::device::DeviceInfo;
 
 #[derive(Debug, Clone)]
 pub struct ManualDiscoveryConfig {}

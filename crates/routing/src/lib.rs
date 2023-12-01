@@ -24,6 +24,7 @@ mod message;
 mod net_ledger;
 mod node;
 mod routing;
+mod protocols;
 
 /// The main node that persists the routing graph is typically a router.
 pub enum NodeType {
