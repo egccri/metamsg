@@ -6,3 +6,5 @@
 + 如果节点是client，可以配置Pub或者Sub，Pub可以是Pub一个或多个Device，同理
 
 是否参考设计xpub/xsub，方便实现mqtt
+
+https://250bpm.com/blog:39/index.html
