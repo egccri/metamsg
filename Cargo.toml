@@ -13,6 +13,7 @@ edition = "2021"
 
 [dependencies]
 connection = { path = "crates/connection", version = "0.1.0" }
+channel = { path = "crates/channel", version = "0.1.0" }
 transmission = { path = "crates/transmission", version = "0.1.0" }
 discovery = { path = "crates/discovery", version = "0.1.0" }
 routing = { path = "crates/routing", version = "0.1.0" }
@@ -28,9 +29,15 @@ members = [
     "crates/transmission",
     "crates/authmanager",
     "crates/adapter",
+    "metamsg-mqtt"
 ]
 
+#exclude = [
+#    "metamsg-mqtt"
+#]
+
 [workspace.dependencies]
+channel = { path = "crates/channel", version = "0.1.0" }
 tokio = "1.32.0"
 bytes = "1.5.0"
 btleplug = "0.11.1"
@@ -38,3 +45,8 @@ libp2p = "0.52.3"
 thiserror = "1.0.48"
 tracing = "0.1.37"
 async-trait = "0.1.73"
+
+[features]
+tcp = []
+quic = []
+ble = []

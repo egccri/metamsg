@@ -3,13 +3,34 @@
 // running the protocol.  This is separable from the protocol itself
 // as the protocol may permit the creation of multiple contexts.
 
-use connection::manager::common_interface::ListenerOptions;
+use crate::Transport;
+use channel::Channel;
+use tokio::runtime::Runtime;
+use connection::tcp::tcp_server::TcpServer;
 
 // todo Engine is self executable,
-pub trait Engine {
-    type Listener;
+// 基于Engine实现Layer，过滤所有channel
+// todo 是否可以合并 client 和 Server
+pub struct Engine {
+    transport: Transport,
+    server: TcpServer,
+    client: Channel,
+    channels: Vec<Channel>,
+    runtime: Runtime,
+}
 
-    fn start(option: ListenerOptions);
+// pub trait Engine {
+//     type Listener;
+//
+//     type Codec;
+//
+//     fn start(option: ListenerOptions);
+//
+//     fn shutdown();
+// }
 
-    fn shutdown();
+impl Engine {
+    pub fn add_channel() {}
+
+    pub fn remove_channel() {}
 }

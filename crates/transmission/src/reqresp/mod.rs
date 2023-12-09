@@ -1,8 +1,8 @@
 use crate::reqresp::protocol::request::Request;
-use crate::rpc::protocol::request::Request;
 use std::collections::HashMap;
 
 mod protocol;
+mod table;
 
 /// Default request id
 pub type RequestId = u32;

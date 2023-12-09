@@ -1,9 +1,33 @@
+use tokio_util::bytes::{Bytes, BytesMut};
 use connection::manager::connection_manager::Connection;
 
+mod adapter_conn;
+
+use crate::channel::adapter_conn::AdapterConnection;
+use crate::message::Message;
+use tower::buffer::Buffer;
+
+// Why either connection and svc, because of maybe some service on the connection, before it become
+// a channel.
+// type Svc = Either<Connection, BoxService<Request<BoxBody>, Response<hyper::Body>, crate::Error>>;
+
+pub type ChannelId = u64;
+
 pub struct Channel {
-    inner: Option<Connection>,
+    channel_id: ChannelId,
+    inner: Inner<Bytes>,
+    context: ChannelContext,
     config: ChannelConfig,
 }
+
+/// `Channel` serve multi message with `Service`s, it's link connection and `Service`s.
+// 将T延迟到方法级别，主要有byte和自定义codec
+pub struct Inner<T> {
+    svc: Buffer<AdapterConnection, Message<T>>,
+}
+
+// 存储channel里的数据该发送到哪里
+pub struct ChannelContext {}
 
 #[derive(Debug)]
 pub struct ChannelConfig {
@@ -12,7 +36,9 @@ pub struct ChannelConfig {
 }
 
 pub enum QoS {
-    Low, Medium, High
+    Low,
+    Medium,
+    High,
 }
 
 impl Default for ChannelConfig {
@@ -24,8 +50,9 @@ impl Default for ChannelConfig {
     }
 }
 
-
 impl Channel {
 
-}
+    pub async fn send(&self, bytes: BytesMut) {}
 
+    pub async fn recv(&self, bytes: BytesMut) {}
+}

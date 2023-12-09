@@ -7,4 +7,3 @@ edition = "2021"
 
 [dependencies]
 connection = { path = "../connection" }
-tower = { version = "0.4.13", features = ["buffer"] }
