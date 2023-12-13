@@ -27,6 +27,7 @@ members = [
     "crates/routing",
     "crates/discovery",
     "crates/transmission",
+    "crates/transport",
     "crates/authmanager",
     "crates/adapter",
     "metamsg-mqtt"
