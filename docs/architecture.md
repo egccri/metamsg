@@ -14,6 +14,10 @@
 + Session是否需要
 + Socket持有Session和Connection，并且Session又可以自己运行, Session中可以自己运行的是Engine
 
+### 消息（数据）流
+
+### 控制流
+
 
 #### Tree
 
